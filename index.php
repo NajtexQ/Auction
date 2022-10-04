@@ -9,9 +9,8 @@ print_r($USER);
 
 <html>
 <div>
-    <button>
-        <a href="logout.php">Logout</a>
-    </button>
+    <a class="btn" href="auctions/createAuction.php">Create auction</a>
+    <a class="btn" href="logout.php">Logout</a>
 </div>
 
 </html>

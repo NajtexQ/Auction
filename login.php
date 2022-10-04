@@ -23,7 +23,7 @@ if (isset($_POST["submit"])) {
         <input type="password" name="password" placeholder="Password">
         <input type="submit" name="submit">
     </form>
-    <button><a href="register.php">Register</a></button>
+    <a class="btn" href="register.php">Register</a>
 </div>
 
 </html>

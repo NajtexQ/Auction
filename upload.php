@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST["upload"])) {
+if ($_FILES["fileToUpload"]["name"]) {
 
     $target_dir = "uploads/";
 

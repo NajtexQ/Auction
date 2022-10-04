@@ -1,5 +1,5 @@
 <?php
 
 if ($USER == null) {
-    header("Location: login.php");
+    header("Location: /auction/login.php");
 }

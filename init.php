@@ -9,3 +9,6 @@ if (isset($_SESSION["user_id"])) {
     $userResult = mysqli_query($conn, $userQuery);
     $USER = mysqli_fetch_assoc($userResult);
 }
+?>
+
+<link rel="stylesheet" href="css/style.css">
