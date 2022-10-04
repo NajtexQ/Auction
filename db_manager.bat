@@ -1,0 +1,43 @@
+@echo off
+rem ---------------- SETTINGS
+
+rem MYSQL USER
+set user=root
+
+rem MYSQL PASSWORD
+set pass=
+
+rem MYSQL DATABASE NAME
+set database=auction
+
+rem SQL FILE NAME TO EXPORT (no reason to change from database.sql)
+set sql_file=database.sql
+
+rem ---------------- END OF SETTINGS
+
+:prompt
+set /p action="What do you want to do? 'import' / 'export': "
+
+if %action% == import (
+    mysql --verbose --user "%user%" --password="%pass%" -e "CREATE DATABASE IF NOT EXISTS %database%"
+    mysql --verbose --user "%user%" --password="%pass%" "%database%" < "%sql_file%"
+    echo Imported %sql_file%. If there are no errors above, it was successeful :P
+) else if %action% == export (
+    REM delete old file
+    del %sql_file%
+
+    rem Dump all tables, but no data
+    rem mysqldump --user "%user%" --password="%pass%" "%database%" --routines --no-data >> "%sql_file%"
+
+    rem Dump all tables with data
+    mysqldump --user "%user%" --password="%pass%" "%database%" --routines >> "%sql_file%"
+
+    rem Dump only some of the tables' data
+    rem mysqldump --user "%user%" --password="%pass%" "%database%" --no-create-info users >> "%sql_file%"
+
+    echo Exported %database% to %sql_file%!
+) else (
+    echo "Unknown action"
+    goto :prompt
+)
+rem Made with love, by AnzeBlaBla <3
