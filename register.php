@@ -30,6 +30,7 @@ include "end.php";
         <input type="password" name="password" placeholder="Password">
         <input type="submit" name="submit">
     </form>
+    <button><a href="login.php">Login</a></button>
 </div>
 
 </html>
