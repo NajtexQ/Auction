@@ -2,8 +2,7 @@
 include "init.php";
 include "loginProtect.php";
 
-echo "Logged in as:";
-print_r($USER);
+include "auctions/displayAuctions.php";
 
 ?>
 

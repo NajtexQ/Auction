@@ -47,7 +47,7 @@ DROP TABLE IF EXISTS `auctions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `auctions` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(30) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `category` varchar(20) NOT NULL DEFAULT 'unlisted',
@@ -57,7 +57,7 @@ CREATE TABLE `auctions` (
   `end_date` datetime NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `auctions` (
 
 LOCK TABLES `auctions` WRITE;
 /*!40000 ALTER TABLE `auctions` DISABLE KEYS */;
-INSERT INTO `auctions` VALUES (0,'Moja objava','To je opis','unlisted',5,200,10,'2022-10-20 00:00:00','633c772892072.jpg');
+INSERT INTO `auctions` VALUES (3,'test','test','unlisted',5,200,10,'2022-10-13 00:00:00','633dd8838598b.jpg'),(4,'To je objava','Test','unlisted',5,100,10,'2022-10-20 00:00:00','633dd8a404bcb.jpg');
 /*!40000 ALTER TABLE `auctions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-04 20:15:28
+-- Dump completed on 2022-10-05 21:26:29

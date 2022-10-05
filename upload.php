@@ -2,8 +2,6 @@
 
 if ($_FILES["fileToUpload"]["name"]) {
 
-    $target_dir = "uploads/";
-
     $file = $_FILES["fileToUpload"]["name"];
 
     $imageFileType = strtolower(pathinfo($file, PATHINFO_EXTENSION));

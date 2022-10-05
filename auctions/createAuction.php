@@ -5,6 +5,8 @@ include "../loginProtect.php";
 
 if (isset($_POST["submit"])) {
 
+    $target_dir = "../uploads/";
+
     include "../upload.php";
 
     $title = $_POST["title"];
