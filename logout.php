@@ -1,5 +1,5 @@
 <?php
-include "init.php";
+include_once "init.php";
 
 session_destroy();
 

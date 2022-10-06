@@ -1,6 +1,8 @@
 <?php
 
 include "db.php";
+include "config.php";
+
 session_start();
 
 $USER = null;
@@ -9,6 +11,7 @@ if (isset($_SESSION["user_id"])) {
     $userResult = mysqli_query($conn, $userQuery);
     $USER = mysqli_fetch_assoc($userResult);
 }
-?>
 
-<link rel="stylesheet" href="css/style.css">
+$PAGE_TITLE = "Auction";
+
+include "functions.php";

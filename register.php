@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php
-include "init.php";
+include_once "init.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $register_query = "INSERT INTO users (firstName, lastName, email, username, password) VALUES ('$_POST[firstName]', '$_POST[lastName]', '$_POST[email]', '$_POST[username]', '$_POST[password]')";
@@ -20,6 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 include "end.php";
 ?>
 <html>
+
+<?php include "head.php"; ?>
 
 <div>
     <form method="post">

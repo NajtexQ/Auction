@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <?php
-include "../init.php";
+include_once "../init.php";
 include "../loginProtect.php";
 
 if (isset($_POST["submit"])) {
-
-    $target_dir = "../uploads/";
 
     include "../upload.php";
 

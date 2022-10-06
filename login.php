@@ -1,5 +1,5 @@
 <?php
-include "init.php";
+include_once "init.php";
 
 if (isset($_POST["submit"])) {
     $login_query = "SELECT * FROM users WHERE username = '$_POST[username]' AND password = '$_POST[password]'";
@@ -16,6 +16,8 @@ if (isset($_POST["submit"])) {
 ?>
 
 <html>
+
+<?php include "head.php"; ?>
 
 <div>
     <form method="post">
