@@ -26,23 +26,56 @@ if (isset($_POST["submit"])) {
     }
 }
 
+function getCategories()
+{
+    global $conn;
+    $query = "SELECT * FROM auction_categories";
+    $result = mysqli_query($conn, $query);
+    $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $categories;
+}
+
 ?>
 
 <html>
 
+<?php include "../head.php"; ?>
+
 <body>
 
-    <form action="createAuction.php" method="post" enctype="multipart/form-data">
-        <input type="text" name="title" placeholder="Title">
-        <input type="text" name="description" placeholder="Description">
-        <input type="text" name="category" placeholder="Category">
-        <input type="text" name="startingPrice" placeholder="Starting price">
-        <input type="text" name="minBidIncrease" placeholder="Minimal increase">
-        <input type="date" name="endDate" placeholder="End date">
-        Select image to upload:
-        <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" name="submit">
-    </form>
+    <?php include "../navbar.php";
+    ?>
+
+    <div class="auction-create-container">
+        <div class="page-title">
+            <h1>Create auction</h1>
+        </div>
+        <form class="auction-create-form" action="createAuction.php" method="post" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Title">
+            <input type="text" name="description" placeholder="Description">
+            <select name="category">
+                <option value="unlisted" selected>Unlisted</option>
+                <?php
+                $categories = getCategories();
+
+                foreach ($categories as $category) {
+                    if ($category["name"] == 'unlisted') {
+                        continue;
+                    }
+                    echo "<option value='" . $category["name"] . "'>" . $category["label"] . "</option>";
+                }
+                ?>
+            </select>
+            <input type="text" name="startingPrice" placeholder="Starting price">
+            <input type="text" name="minBidIncrease" placeholder="Minimal increase">
+            <input type="date" name="endDate" placeholder="End date">
+            <div class="file-upload">
+                Select image to upload:
+                <input type="file" name="fileToUpload" id="fileToUpload">
+            </div>
+            <input class="btn" type="submit" name="submit">
+        </form>
+    </div>
 
 </body>
 

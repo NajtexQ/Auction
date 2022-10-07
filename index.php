@@ -9,8 +9,12 @@ include "loginProtect.php";
 <div>
     <?php
     include "navbar.php";
-    include "auctions/displayAuctions.php";
     ?>
+    <div class="content-container">
+        <?php
+        include "auctions/displayAuctions.php";
+        ?>
+    </div>
 </div>
 
 </html>

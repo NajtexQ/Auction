@@ -15,17 +15,27 @@ $result = mysqli_query($conn, $query);
 
 <body>
     <?php include "../navbar.php"; ?>
-    <div class="display-auctions">
-        <div class="auctions-grid">
+    <div class="content-container">
+        <div class="page-title">
+            <h1>My auctions</h1>
+        </div>
+        <div class="display-auctions">
             <?php
             if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    displayAuction($row);
-                }
-            } else {
-                echo "No auctions";
-            }
             ?>
+                <div class="auctions-grid">
+                    <?php
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        displayAuction($row);
+                    }
+                } else {
+                    ?>
+                    <div class="no-auctuins"></div>
+                <?php
+                    echo "<p>You don't have any auctions!</p>";
+                }
+                ?>
+                </div>
         </div>
     </div>
 </body>

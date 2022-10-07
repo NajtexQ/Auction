@@ -12,7 +12,7 @@ function displayAuction($props)
     echo "<p>End date: " . $props["end_date"] . "</p>";
     echo "<a class='btn' href='" . rootUrl("/auctions/viewAuction.php?id=" . $props["id"]) . "'>View auction</a>";
     if ($props["owner_id"] == $USER["id"]) {
-        echo "<a class='btn' href='deleteAuction.php?id=" . $props["id"] . "'>Delete auction</a>";
+        echo "<a class='btn' href='" . rootUrl("/auctions/deleteAuction.php?id=" . $props["id"]) . "'>Delete auction</a>";
     }
     echo "</div>";
 }
