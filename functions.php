@@ -7,12 +7,22 @@ function displayAuction($props)
     $currentBid = getHighestBid($props["id"]);
     $currentPrice = $currentBid["amount"] ?? $props["start_price"];
     $currentBidder = $currentBid["bidder"] ?? "None";
+    $currentBidderId = $currentBid["user_id"] ?? null;
+
+    $category = getCategoryLabel($props["category"]);
 
     $newBid = $currentPrice + $props["min_bid_increase"];
 
+    $isHighestBidder = $USER["id"] == $currentBidderId;
+
+    $btnClass = $isHighestBidder ? "bid-secondary" : "bid-primary";
+
     echo "<div class='auction-container'>";
     echo "<div class='auction-content'>";
+    echo "<div class='auction-image-container'>";
+    echo "<div class='auction-category-tag'>$category</div>";
     echo "<img src='" . rootUrl("/uploads/") . $props["image"] . "' alt='auction image' class='auction-image'>";
+    echo "</div>";
     echo "<div class='auction-info'>";
     echo "<h3 class='auction-title'>{$props["title"]}</h3>";
     echo "<div class='auction-description'>{$props["short_desc"]}</div>";
@@ -23,7 +33,7 @@ function displayAuction($props)
     if ($props["owner_id"] == $USER["id"]) {
         echo "<a class='btn' href='" . rootUrl("/auctions/deleteAuction.php?id=" . $props["id"]) . "'>Delete auction</a>";
     } else {
-        echo "<a class='btn' href='" . rootUrl("/bids/createBid.php?auctionId=" . $props["id"] . "&amount=" . $newBid) . "'>Bid (" . $newBid . "€" . ")</a>";
+        echo "<a class='btn " . $btnClass . "' href='" . rootUrl("/bids/createBid.php?auctionId=" . $props["id"] . "&amount=" . $newBid) . "'>Bid (" . $newBid . "€" . ")</a>";
     }
     echo "</div>";
     echo "</div>";
@@ -58,4 +68,13 @@ function getHighestBid($auctionId)
     $result = mysqli_query($conn, $query);
     $bid = mysqli_fetch_assoc($result);
     return $bid;
+}
+
+function getCategoryLabel($category)
+{
+    global $conn;
+    $query = "SELECT * FROM auction_categories WHERE name = '$category'";
+    $result = mysqli_query($conn, $query);
+    $category = mysqli_fetch_assoc($result);
+    return $category["label"];
 }

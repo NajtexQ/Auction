@@ -1,6 +1,6 @@
 <?php
 
-$query = "SELECT * FROM auctions;";
+$query = "SELECT * FROM auctions WHERE end_date > NOW()";
 
 $result = mysqli_query($conn, $query);
 
