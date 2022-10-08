@@ -35,7 +35,7 @@ CREATE TABLE `auction_categories` (
 
 LOCK TABLES `auction_categories` WRITE;
 /*!40000 ALTER TABLE `auction_categories` DISABLE KEYS */;
-INSERT INTO `auction_categories` VALUES ('unlisted','Unlisted');
+INSERT INTO `auction_categories` VALUES ('cars','Cars'),('clothes','Clothes'),('jewlery','Jewlery'),('unlisted','Unlisted');
 /*!40000 ALTER TABLE `auction_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -49,7 +49,8 @@ DROP TABLE IF EXISTS `auctions`;
 CREATE TABLE `auctions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(30) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `short_desc` varchar(50) NOT NULL,
+  `long_desc` varchar(500) DEFAULT NULL,
   `category` varchar(20) NOT NULL DEFAULT 'unlisted',
   `owner_id` int(11) NOT NULL,
   `start_price` int(11) NOT NULL,
@@ -57,7 +58,7 @@ CREATE TABLE `auctions` (
   `end_date` datetime NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +67,7 @@ CREATE TABLE `auctions` (
 
 LOCK TABLES `auctions` WRITE;
 /*!40000 ALTER TABLE `auctions` DISABLE KEYS */;
-INSERT INTO `auctions` VALUES (3,'test','test','unlisted',5,200,10,'2022-10-13 00:00:00','633dd8838598b.jpg'),(6,'Okay','nočem','unlisted',6,100,10,'2022-10-13 00:00:00','633f34cb898ed.png'),(7,'To je to','To j eto','unlisted',6,1000,10,'2022-10-14 00:00:00','633f34e229897.jpg'),(8,'Hihihi','Jajajaj js nemorm več','unlisted',6,1,10,'2022-10-21 00:00:00','633f3520ddff5.jpg');
+INSERT INTO `auctions` VALUES (6,'Okay','test','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus purus non justo convallis, non feugiat elit vehicula. Duis pharetra massa leo, ut dignissim purus condimentum ac. Aliquam ultricies congue metus. Etiam sem ante, dictum quis sodales','unlisted',6,100,10,'2022-10-13 00:00:00','633f34cb898ed.png'),(7,'To je to','asdasd','To j eto','unlisted',6,1000,10,'2022-10-14 00:00:00','633f34e229897.jpg'),(8,'Hihihi','this is short desc','Jajajaj js nemorm več','unlisted',6,1,10,'2022-10-21 00:00:00','633f3520ddff5.jpg');
 /*!40000 ALTER TABLE `auctions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,11 +80,11 @@ DROP TABLE IF EXISTS `bids`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bids` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `auction` int(11) NOT NULL,
-  `bidder` int(11) NOT NULL,
+  `auction_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,6 +93,7 @@ CREATE TABLE `bids` (
 
 LOCK TABLES `bids` WRITE;
 /*!40000 ALTER TABLE `bids` DISABLE KEYS */;
+INSERT INTO `bids` VALUES (1,6,5,110),(2,8,5,11),(3,8,5,21),(4,8,5,31);
 /*!40000 ALTER TABLE `bids` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,4 +140,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-06 22:07:58
+-- Dump completed on 2022-10-08  2:02:44
