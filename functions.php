@@ -30,7 +30,11 @@ function displayAuction($props)
     echo "</div>";
     echo "</div>";
     if (!$isExpired) {
-        echo "<div class='auction-expired'>Sold for: " . $currentPrice . '€' . "</div>";
+        if ($currentBid["amount"]) {
+            echo "<div class='auction-expired'>Sold for: " . $currentPrice . '€' . "</div>";
+        } else {
+            echo "<div class='auction-expired'>Expired</div>";
+        }
     }
     echo "<div class='auction-buttons'>";
     echo "<a class='btn' href='" . rootUrl("/auctions/viewAuction.php?id=" . $props["id"]) . "'>View auction</a>";

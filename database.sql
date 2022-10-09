@@ -58,7 +58,7 @@ CREATE TABLE `auctions` (
   `end_date` datetime NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `auctions` (
 
 LOCK TABLES `auctions` WRITE;
 /*!40000 ALTER TABLE `auctions` DISABLE KEYS */;
-INSERT INTO `auctions` VALUES (6,'Okay','test','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus purus non justo convallis, non feugiat elit vehicula. Duis pharetra massa leo, ut dignissim purus condimentum ac. Aliquam ultricies congue metus. Etiam sem ante, dictum quis sodales','cars',6,100,10,'2022-10-13 00:00:00','633f34cb898ed.png'),(7,'To je to','asdasd','To j eto','unlisted',6,1000,10,'2022-10-14 00:00:00','633f34e229897.jpg'),(8,'Hihihi','this is short desc','Jajajaj js nemorm več','unlisted',6,1,10,'2022-10-21 00:00:00','633f3520ddff5.jpg');
+INSERT INTO `auctions` VALUES (6,'Okay','test','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus purus non justo convallis, non feugiat elit vehicula. Duis pharetra massa leo, ut dignissim purus condimentum ac. Aliquam ultricies congue metus. Etiam sem ante, dictum quis sodales','cars',6,100,10,'2022-10-13 00:00:00','633f34cb898ed.png'),(7,'To je to','asdasd','To j eto','unlisted',6,1000,10,'2022-10-14 00:00:00','633f34e229897.jpg'),(8,'Hihihi','this is short desc','Jajajaj js nemorm več','unlisted',6,1,10,'2022-10-05 00:00:00','633f3520ddff5.jpg'),(12,'Test auction','This is short desc','This is very long desc','jewlery',5,500,50,'2022-10-06 00:00:00','6342b504c5ec6.jpg'),(13,'My new car','This is car very short','This is car very longeer','clothes',5,500,10,'2022-10-14 00:00:00','6342b863cf8e1.jpg');
 /*!40000 ALTER TABLE `auctions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +84,7 @@ CREATE TABLE `bids` (
   `user_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `bids` (
 
 LOCK TABLES `bids` WRITE;
 /*!40000 ALTER TABLE `bids` DISABLE KEYS */;
-INSERT INTO `bids` VALUES (1,6,5,110),(2,8,5,11),(3,8,5,21),(4,8,5,31);
+INSERT INTO `bids` VALUES (1,6,5,110),(2,8,5,11),(3,8,5,21),(4,8,5,31),(5,12,6,550),(6,13,6,510);
 /*!40000 ALTER TABLE `bids` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,4 +140,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-08 19:27:39
+-- Dump completed on 2022-10-09 21:22:11
