@@ -8,7 +8,8 @@ if (isset($_POST["submit"])) {
     include "../upload.php";
 
     $title = $_POST["title"];
-    $description = $_POST["description"];
+    $short_desc = $_POST["short_desc"];
+    $long_desc = $_POST["long_desc"];
     $startPrice = $_POST["startingPrice"];
     $minBidIncrease = $_POST["minBidIncrease"];
     $category = $_POST["category"];
@@ -16,7 +17,7 @@ if (isset($_POST["submit"])) {
     $image = $uniqueFileName;
     $endDate = $_POST["endDate"];
 
-    $query = "INSERT INTO auctions (title, description, category, owner_id, start_price, min_bid_increase, end_date, image) VALUES ('$title', '$description', '$category', '$owner_id', '$startPrice', '$minBidIncrease', '$endDate', '$image')";
+    $query = "INSERT INTO auctions (title, short_desc, long_desc, category, owner_id, start_price, min_bid_increase, end_date, image) VALUES ('$title', '$short_desc', '$long_desc', '$category', '$owner_id', '$startPrice', '$minBidIncrease', '$endDate', '$image')";
     $result = mysqli_query($conn, $query);
 
     if ($result) {
@@ -52,7 +53,8 @@ function getCategories()
         </div>
         <form class="auction-create-form" action="createAuction.php" method="post" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="Title">
-            <input type="text" name="description" placeholder="Description">
+            <input type="text" name="short_desc" placeholder="Short description">
+            <input type="text" name="long_desc" placeholder="Long description">
             <select name="category">
                 <option value="unlisted" selected>Unlisted</option>
                 <?php
