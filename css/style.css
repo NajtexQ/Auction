@@ -171,7 +171,7 @@
 .view-auction-image {
   max-height: 300px;
   object-fit: cover;
-  border-radius: 5px 5px 0 0;
+  border-radius: 15px;
 }
 
 .login-container {
@@ -215,4 +215,46 @@
   font-size: 14px;
   font-weight: 600;
   text-align: center;
+}
+
+.view-auction-info {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  background: #fff;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+}
+
+.view-auction-table {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.view-auction-table tr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.view-auction-table tr td {
+  font-size: 16px;
+}
+
+.bid-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.view-auction-bid-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.3s ease 0s;
 }
