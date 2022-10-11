@@ -17,13 +17,23 @@ if (isset($_POST["submit"])) {
     $image = $uniqueFileName;
     $endDate = $_POST["endDate"];
 
-    $query = "INSERT INTO auctions (title, short_desc, long_desc, category, owner_id, start_price, min_bid_increase, end_date, image) VALUES ('$title', '$short_desc', '$long_desc', '$category', '$owner_id', '$startPrice', '$minBidIncrease', '$endDate', '$image')";
-    $result = mysqli_query($conn, $query);
-
-    if ($result) {
-        header("Location: ../index.php");
+    if (empty($title) || empty($short_desc) || empty($long_desc) || empty($startPrice) || empty($minBidIncrease) || empty($category) || empty($endDate)) {
+        displayError("Please fill in all fields");
+    } else if ($startPrice < 0) {
+        displayError("Starting price must be greater than 0");
+    } else if ($minBidIncrease < 0) {
+        displayError("Minimum bid increase must be greater than 0");
+    } else if ($endDate < date("Y-m-d")) {
+        displayError("End date must be in the future");
     } else {
-        echo "Error: " . mysqli_error($conn);
+        $query = "INSERT INTO auctions (title, short_desc, long_desc, category, owner_id, start_price, min_bid_increase, end_date, image) VALUES ('$title', '$short_desc', '$long_desc', '$category', '$owner_id', '$startPrice', '$minBidIncrease', '$endDate', '$image')";
+        $result = mysqli_query($conn, $query);
+
+        if ($result) {
+            header("Location: ../index.php");
+        } else {
+            echo "Error: " . mysqli_error($conn);
+        }
     }
 }
 
