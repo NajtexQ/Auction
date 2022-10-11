@@ -88,3 +88,8 @@ function getCategoryLabel($category)
     $category = mysqli_fetch_assoc($result);
     return $category["label"];
 }
+
+function displayError($msg)
+{
+    echo "<div class='error-container'>$msg</div>";
+}

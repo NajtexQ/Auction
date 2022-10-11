@@ -10,7 +10,7 @@ if (isset($_POST["submit"])) {
         $_SESSION["user_id"] = $login_row["id"];
         header("Location: index.php");
     } else {
-        echo "Invalid username or password";
+        displayError("Invalid username or password");
     }
 }
 ?>
@@ -19,13 +19,13 @@ if (isset($_POST["submit"])) {
 
 <?php include "head.php"; ?>
 
-<div>
-    <form method="post">
+<div class="login-container">
+    <form class="login-form" method="post">
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="password" placeholder="Password">
-        <input type="submit" name="submit">
+        <input class="btn" type="submit" name="submit">
     </form>
-    <a class="btn" href="register.php">Register</a>
+    <p>Don't have an account? <a href="register.php">Register</a></p>
 </div>
 
 </html>
