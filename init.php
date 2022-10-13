@@ -15,3 +15,5 @@ if (isset($_SESSION["user_id"])) {
 $PAGE_TITLE = "Auction";
 
 include "functions.php";
+
+include "auctions/checkForExpired.php";

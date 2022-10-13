@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.4.24-MariaDB, for Win64 (AMD64)
+-- MariaDB dump 10.19  Distrib 10.4.25-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: auction
 -- ------------------------------------------------------
--- Server version	10.4.24-MariaDB
+-- Server version	10.4.25-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -54,11 +54,14 @@ CREATE TABLE `auctions` (
   `category` varchar(20) NOT NULL DEFAULT 'unlisted',
   `owner_id` int(11) NOT NULL,
   `start_price` int(11) NOT NULL,
+  `min_bid` int(11) DEFAULT 1,
   `min_bid_increase` int(11) NOT NULL,
   `end_date` datetime NOT NULL,
   `image` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `owner_id` (`owner_id`),
+  CONSTRAINT `auctions_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +70,7 @@ CREATE TABLE `auctions` (
 
 LOCK TABLES `auctions` WRITE;
 /*!40000 ALTER TABLE `auctions` DISABLE KEYS */;
-INSERT INTO `auctions` VALUES (6,'Okay','test','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus purus non justo convallis, non feugiat elit vehicula. Duis pharetra massa leo, ut dignissim purus condimentum ac. Aliquam ultricies congue metus. Etiam sem ante, dictum quis sodales','cars',6,100,10,'2022-10-13 00:00:00','633f34cb898ed.png'),(7,'To je to','asdasd','To j eto','unlisted',6,1000,10,'2022-10-14 00:00:00','633f34e229897.jpg'),(8,'Hihihi','this is short desc','Jajajaj js nemorm več','unlisted',6,1,10,'2022-10-05 00:00:00','633f3520ddff5.jpg'),(12,'Test auction','This is short desc','This is very long desc','jewlery',5,500,50,'2022-10-06 00:00:00','6342b504c5ec6.jpg'),(13,'My new car','This is car very short','This is car very longeer','clothes',5,500,10,'2022-10-14 00:00:00','6342b863cf8e1.jpg');
+INSERT INTO `auctions` VALUES (6,'Okay','test','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus purus non justo convallis, non feugiat elit vehicula. Duis pharetra massa leo, ut dignissim purus condimentum ac. Aliquam ultricies congue metus. Etiam sem ante, dictum quis sodales','cars',6,100,1,10,'2022-10-13 00:00:00','633f34cb898ed.png'),(7,'To je to','asdasd','To j eto','unlisted',6,1000,1,10,'2022-10-14 00:00:00','633f34e229897.jpg'),(8,'Hihihi','this is short desc','Jajajaj js nemorm več','unlisted',6,1,1,10,'2022-10-05 00:00:00','633f3520ddff5.jpg'),(12,'Test auction','This is short desc','This is very long desc','jewlery',5,500,1,50,'2022-10-06 00:00:00','6342b504c5ec6.jpg'),(13,'My new car','This is car very short','This is car very longeer','clothes',5,500,1,10,'2022-10-14 00:00:00','6342b863cf8e1.jpg');
 /*!40000 ALTER TABLE `auctions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,8 +86,12 @@ CREATE TABLE `bids` (
   `auction_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `auction_id` (`auction_id`,`user_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `bids_ibfk_1` FOREIGN KEY (`auction_id`) REFERENCES `auctions` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `bids_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +100,7 @@ CREATE TABLE `bids` (
 
 LOCK TABLES `bids` WRITE;
 /*!40000 ALTER TABLE `bids` DISABLE KEYS */;
-INSERT INTO `bids` VALUES (1,6,5,110),(2,8,5,11),(3,8,5,21),(4,8,5,31),(5,12,6,550),(6,13,6,510);
+INSERT INTO `bids` VALUES (1,6,5,110),(2,8,5,11),(3,8,5,21),(4,8,5,31),(5,12,6,550),(6,13,6,510),(7,6,5,120),(8,6,5,130),(9,6,5,140),(10,6,5,150),(11,6,5,160),(12,6,5,170),(13,6,5,180),(14,6,5,190),(15,6,5,200),(16,6,5,210),(17,6,5,220),(18,6,5,230),(19,6,5,240),(20,6,5,250),(21,6,5,260),(22,6,5,270),(23,6,5,280),(24,6,5,290),(25,6,5,300),(26,6,5,310),(27,7,5,1500);
 /*!40000 ALTER TABLE `bids` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,4 +147,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-09 21:22:11
+-- Dump completed on 2022-10-13 12:44:44

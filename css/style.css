@@ -12,6 +12,16 @@
   cursor: pointer;
 }
 
+.btn-secondary {
+  background: rgb(233, 233, 233);
+  color: rgb(172, 172, 172);
+}
+
+.btn-big {
+  width: 100px;
+  text-align: center;
+}
+
 .content-container {
   padding: 100px 50px;
 }
@@ -258,4 +268,16 @@
   border-radius: 5px;
   outline: none;
   transition: all 0.3s ease 0s;
+}
+
+.page-buttons {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
 }
