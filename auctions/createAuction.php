@@ -11,6 +11,7 @@ if (isset($_POST["submit"])) {
     $short_desc = $_POST["short_desc"];
     $long_desc = $_POST["long_desc"];
     $startPrice = $_POST["startingPrice"];
+    $minPrice = $_POST["minPrice"];
     $minBidIncrease = $_POST["minBidIncrease"];
     $category = $_POST["category"];
     $owner_id = $USER["id"];
@@ -26,7 +27,7 @@ if (isset($_POST["submit"])) {
     } else if ($endDate < date("Y-m-d")) {
         displayError("End date must be in the future");
     } else {
-        $query = "INSERT INTO auctions (title, short_desc, long_desc, category, owner_id, start_price, min_bid_increase, end_date, image) VALUES ('$title', '$short_desc', '$long_desc', '$category', '$owner_id', '$startPrice', '$minBidIncrease', '$endDate', '$image')";
+        $query = "INSERT INTO auctions (title, short_desc, long_desc, category, owner_id, start_price, min_bid_increase, end_date, image) VALUES ('$title', '$short_desc', '$long_desc', '$category', '$owner_id', '$startPrice', '$minPrice' ,'$minBidIncrease', '$endDate', '$image')";
         $result = mysqli_query($conn, $query);
 
         if ($result) {
@@ -79,6 +80,7 @@ function getCategories()
                 ?>
             </select>
             <input type="text" name="startingPrice" placeholder="Starting price">
+            <input type="text" name="minPrice" placeholder="Starting price">
             <input type="text" name="minBidIncrease" placeholder="Minimal increase">
             <input type="date" name="endDate" placeholder="End date">
             <div class="file-upload">

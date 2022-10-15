@@ -47,11 +47,13 @@ $auction = mysqli_fetch_assoc($result);
             echo "</tr>";
             echo "</table>";
             echo "</div>";
-            echo "<form class='bid-form' action='" . rootUrl("/bids/createBid.php") . "' method='GET'>";
-            echo "<input type='hidden' name='auctionId' value='$auctionId'>";
-            echo "<input type='text' name='amount' placeholder='Enter your bid' class='view-auction-bid-input'>";
-            echo "<input type='submit' value='Place Bid' class='btn'>";
-            echo "</form>";
+            if ($auction["owner_id"] != $USER["id"]) {
+                echo "<form class='bid-form' action='" . rootUrl("/bids/createBid.php") . "' method='GET'>";
+                echo "<input type='hidden' name='auctionId' value='$auctionId'>";
+                echo "<input type='text' name='amount' placeholder='Enter your bid' class='view-auction-bid-input'>";
+                echo "<input type='submit' value='Place Bid' class='btn'>";
+                echo "</form>";
+            }
             echo "</div>";
         } else {
             echo "<h1>Auction not found</h1>";
