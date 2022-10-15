@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.4.25-MariaDB, for Win64 (AMD64)
+-- MariaDB dump 10.19  Distrib 10.4.24-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: auction
 -- ------------------------------------------------------
--- Server version	10.4.25-MariaDB
+-- Server version	10.4.24-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -61,7 +61,7 @@ CREATE TABLE `auctions` (
   PRIMARY KEY (`id`),
   KEY `owner_id` (`owner_id`),
   CONSTRAINT `auctions_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `auctions` (
 
 LOCK TABLES `auctions` WRITE;
 /*!40000 ALTER TABLE `auctions` DISABLE KEYS */;
-INSERT INTO `auctions` VALUES (6,'Okay','test','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus purus non justo convallis, non feugiat elit vehicula. Duis pharetra massa leo, ut dignissim purus condimentum ac. Aliquam ultricies congue metus. Etiam sem ante, dictum quis sodales','cars',6,100,1,10,'2022-10-13 00:00:00','633f34cb898ed.png'),(7,'To je to','asdasd','To j eto','unlisted',6,1000,1,10,'2022-10-14 00:00:00','633f34e229897.jpg'),(8,'Hihihi','this is short desc','Jajajaj js nemorm več','unlisted',6,1,1,10,'2022-10-05 00:00:00','633f3520ddff5.jpg'),(12,'Test auction','This is short desc','This is very long desc','jewlery',5,500,1,50,'2022-10-06 00:00:00','6342b504c5ec6.jpg'),(13,'My new car','This is car very short','This is car very longeer','clothes',5,500,1,10,'2022-10-14 00:00:00','6342b863cf8e1.jpg');
+INSERT INTO `auctions` VALUES (6,'Okay','test','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus purus non justo convallis, non feugiat elit vehicula. Duis pharetra massa leo, ut dignissim purus condimentum ac. Aliquam ultricies congue metus. Etiam sem ante, dictum quis sodales','cars',6,100,1,10,'2022-10-13 00:00:00','633f34cb898ed.png'),(7,'To je to','asdasd','To j eto','unlisted',6,1000,1,10,'2022-10-14 00:00:00','633f34e229897.jpg'),(8,'Hihihi','this is short desc','Jajajaj js nemorm več','unlisted',6,1,1,10,'2022-10-05 00:00:00','633f3520ddff5.jpg'),(12,'Test auction','This is short desc','This is very long desc','jewlery',5,500,1,50,'2022-10-06 00:00:00','6342b504c5ec6.jpg'),(13,'My new car','This is car very short','This is car very longeer','clothes',5,500,1,10,'2022-10-14 00:00:00','6342b863cf8e1.jpg'),(16,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(17,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(18,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(19,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(20,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(21,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(22,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(23,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(24,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg');
 /*!40000 ALTER TABLE `auctions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,4 +147,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-13 12:44:44
+-- Dump completed on 2022-10-15 14:14:17
