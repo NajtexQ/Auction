@@ -80,7 +80,7 @@ function getCategories()
                 ?>
             </select>
             <input type="text" name="startingPrice" placeholder="Starting price">
-            <input type="text" name="minPrice" placeholder="Starting price">
+            <input type="text" name="minPrice" placeholder="Minimum price">
             <input type="text" name="minBidIncrease" placeholder="Minimal increase">
             <input type="date" name="endDate" placeholder="End date">
             <div class="file-upload">
