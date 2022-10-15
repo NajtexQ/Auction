@@ -2,6 +2,8 @@
 include_once "init.php";
 include "loginProtect.php";
 
+include "auctions/checkForExpired.php";
+
 ?>
 
 <html>

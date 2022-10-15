@@ -32,7 +32,7 @@ $result = mysqli_query($conn, $query);
     </div>
 </div>
 <div class="page-buttons">
-    <?php if ($currentPage < $numOfPages) : ?>
+    <?php if ($currentPage > 1) : ?>
         <a href="<?php echo ("?page=" . $currentPage - 1) ?>" class="btn btn-secondary btn-big" id="previous-page">Previous page</a>
     <?php endif; ?>
     <?php if ($currentPage < $numOfPages) : ?>
