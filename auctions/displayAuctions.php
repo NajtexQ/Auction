@@ -12,22 +12,21 @@ $numOfPages = ceil($countResult["auction_count"] / $auctionsPerPage);
 
 $offset = ($currentPage - 1) * $auctionsPerPage;
 
-$query = "SELECT * FROM auctions WHERE end_date > NOW() LIMIT $auctionsPerPage OFFSET $offset";
+$query = "SELECT * FROM auctions WHERE end_date > NOW() LIMIT ? OFFSET $offset";
 
-$result = mysqli_query($conn, $query);
-
+$result = runQuery($query, "i", $auctionsPerPage);
 ?>
 
 <div class="auctions-page">
     <div class="display-auctions">
         <div class="auctions-grid">
             <?php
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
                     displayAuction($row);
                 }
             } else {
-                echo "No auctions";
+                echo "<div class='no-auctions'>No auctions found</div>";
             }
             ?>
         </div>

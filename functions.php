@@ -93,3 +93,12 @@ function displayError($msg)
 {
     echo "<div class='error-container'>$msg</div>";
 }
+
+function runQuery($query, $types, ...$values)
+{
+    global $conn;
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param($types, ...$values);
+    $stmt->execute();
+    return $stmt->get_result();
+}
