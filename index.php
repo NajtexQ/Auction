@@ -1,8 +1,8 @@
 <?php
 include_once "init.php";
-include "loginProtect.php";
+include_once "loginProtect.php";
 
-include "auctions/checkForExpired.php";
+include_once "auctions/checkForExpired.php";
 
 ?>
 

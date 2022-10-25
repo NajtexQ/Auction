@@ -1,7 +1,7 @@
 <?php
 
 include_once "../init.php";
-include "../loginProtect.php";
+include_once "../loginProtect.php";
 
 $userId = $USER["id"];
 

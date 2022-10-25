@@ -1,7 +1,7 @@
 <?php
 
-include "../init.php";
-include "../loginProtect.php";
+include_once "../init.php";
+include_once "../loginProtect.php";
 
 $auctionId = $_GET["id"];
 

@@ -1,7 +1,7 @@
 <?php
 
-include "db.php";
-include "config.php";
+include_once "db.php";
+include_once "config.php";
 
 session_start();
 
@@ -14,4 +14,4 @@ if (isset($_SESSION["user_id"])) {
 
 $PAGE_TITLE = "Auction";
 
-include "functions.php";
+include_once "functions.php";

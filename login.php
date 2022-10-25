@@ -14,7 +14,7 @@ if (isset($_POST["submit"])) {
     }
     if ($passwordVerified) {
         $_SESSION["user_id"] = $user["id"];
-        header("Location: index.php");
+        header("Location: " . rootUrl("/index.php"));
     } else {
         displayError("Invalid username or password");
     }

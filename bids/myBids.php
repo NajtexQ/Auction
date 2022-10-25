@@ -1,7 +1,7 @@
 <?php
 
 include_once "../init.php";
-include "../loginProtect.php";
+include_once "../loginProtect.php";
 
 $query = "SELECT auctions.id, auctions.title, auctions.short_desc, auctions.category, auctions.owner_id, auctions.start_price, auctions.min_bid_increase, auctions.end_date, auctions.image, MAX(bids.amount) AS amount FROM auctions INNER JOIN bids ON auctions.id = bids.auction_id WHERE bids.user_id = $USER[id] GROUP BY auctions.id";
 $result = mysqli_query($conn, $query);

@@ -21,14 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $last_id = $conn->insert_id;
             $_SESSION["user_id"] = $last_id;
 
-            header("Location: index.php");
+            header("Location: " . rootUrl("/index.php"));
         } else {
             echo "Error: " . $register_query . "<br>" . mysqli_error($conn);
         }
     }
 }
 
-include "end.php";
+include_once "end.php";
 ?>
 <html>
 
