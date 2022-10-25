@@ -2,17 +2,24 @@
 include_once "init.php";
 
 if (isset($_POST["submit"])) {
-    $login_query = "SELECT * FROM users WHERE username = '$_POST[username]' AND password = '$_POST[password]'";
+
+    $login_query = "SELECT * FROM users WHERE username = '$_POST[username]'";
     $login_result = mysqli_query($conn, $login_query);
 
+    $passwordVerified = false;
+
     if (mysqli_num_rows($login_result) > 0) {
-        $login_row = mysqli_fetch_assoc($login_result);
-        $_SESSION["user_id"] = $login_row["id"];
+        $user = mysqli_fetch_assoc($login_result);
+        $passwordVerified = password_verify($_POST["password"], $user["password"]);
+    }
+    if ($passwordVerified) {
+        $_SESSION["user_id"] = $user["id"];
         header("Location: index.php");
     } else {
         displayError("Invalid username or password");
     }
 }
+
 ?>
 
 <html>
