@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.4.24-MariaDB, for Win64 (AMD64)
+-- MariaDB dump 10.19  Distrib 10.4.25-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: auction
 -- ------------------------------------------------------
--- Server version	10.4.24-MariaDB
+-- Server version	10.4.25-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -70,7 +70,6 @@ CREATE TABLE `auctions` (
 
 LOCK TABLES `auctions` WRITE;
 /*!40000 ALTER TABLE `auctions` DISABLE KEYS */;
-INSERT INTO `auctions` VALUES (6,'Okay','test','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus purus non justo convallis, non feugiat elit vehicula. Duis pharetra massa leo, ut dignissim purus condimentum ac. Aliquam ultricies congue metus. Etiam sem ante, dictum quis sodales','cars',6,100,1,10,'2022-10-13 00:00:00','633f34cb898ed.png'),(7,'To je to','asdasd','To j eto','unlisted',6,1000,1,10,'2022-10-14 00:00:00','633f34e229897.jpg'),(8,'Hihihi','this is short desc','Jajajaj js nemorm več','unlisted',6,1,1,10,'2022-10-05 00:00:00','633f3520ddff5.jpg'),(12,'Test auction','This is short desc','This is very long desc','jewlery',5,500,1,50,'2022-10-06 00:00:00','6342b504c5ec6.jpg'),(13,'My new car','This is car very short','This is car very longeer','clothes',5,500,1,10,'2022-10-14 00:00:00','6342b863cf8e1.jpg'),(16,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(17,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(18,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(19,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(20,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(21,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(22,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(23,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg'),(24,'This is my auction','Short description','Long description','jewlery',5,500,1,10,'2022-10-20 00:00:00','634aa2ccd5adc.jpg');
 /*!40000 ALTER TABLE `auctions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +99,6 @@ CREATE TABLE `bids` (
 
 LOCK TABLES `bids` WRITE;
 /*!40000 ALTER TABLE `bids` DISABLE KEYS */;
-INSERT INTO `bids` VALUES (1,6,5,110),(2,8,5,11),(3,8,5,21),(4,8,5,31),(5,12,6,550),(6,13,6,510),(7,6,5,120),(8,6,5,130),(9,6,5,140),(10,6,5,150),(11,6,5,160),(12,6,5,170),(13,6,5,180),(14,6,5,190),(15,6,5,200),(16,6,5,210),(17,6,5,220),(18,6,5,230),(19,6,5,240),(20,6,5,250),(21,6,5,260),(22,6,5,270),(23,6,5,280),(24,6,5,290),(25,6,5,300),(26,6,5,310),(27,7,5,1500);
 /*!40000 ALTER TABLE `bids` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +119,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +128,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (5,'test','test','test@test.com','test','test'),(6,'Timotej','Kompare','gaming.najt@gmail.com','najtex','test');
+INSERT INTO `users` VALUES (7,'Timotej','Kompare','gaming.najt@gmail.com','najtex','$2y$10$fkVfYqEdaNoSIufJ9XbLUe/lp.XTfpMeA6chWBnioSpnqQAh3GKfe');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,4 +145,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-15 14:14:17
+-- Dump completed on 2022-10-25 11:45:02
