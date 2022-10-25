@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-        $register_query = "INSERT INTO users (firstName, lastName, email, username, password) VALUES ('$_POST[firstName]', '$_POST[lastName]', '$_POST[email]', '$_POST[username]', '$password')";
-        $register_result = mysqli_query($conn, $register_query);
+        $register_query = "INSERT INTO users (firstName, lastName, email, username, password) VALUES (?, ?, ?, ?, ?)";
+        $register_result = runQuery($register_query, "sssss", $_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["username"], $password);
 
         if ($register_result) {
             $last_id = $conn->insert_id;

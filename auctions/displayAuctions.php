@@ -4,17 +4,15 @@ $currentPage = $_GET['page'] ?? 1;
 $auctionsPerPage = 6;
 
 $countQuery = "SELECT COUNT(*) as auction_count FROM auctions WHERE end_date > NOW()";
-$countResult = mysqli_query($conn, $countQuery);
-
-$countResult = mysqli_fetch_assoc($countResult);
+$countResult = runQuery($countQuery);
 
 $numOfPages = ceil($countResult["auction_count"] / $auctionsPerPage);
 
 $offset = ($currentPage - 1) * $auctionsPerPage;
 
-$query = "SELECT * FROM auctions WHERE end_date > NOW() LIMIT ? OFFSET $offset";
+$query = "SELECT * FROM auctions WHERE end_date > NOW() LIMIT ? OFFSET ?";
 
-$result = runQuery($query, "i", $auctionsPerPage);
+$result = runQuery($query, "ii", $auctionsPerPage, $offset);
 ?>
 
 <div class="auctions-page">

@@ -5,9 +5,9 @@ include_once "../loginProtect.php";
 
 $userId = $USER["id"];
 
-$query = "SELECT * FROM auctions WHERE owner_id = '$userId' ORDER BY id DESC";
+$query = "SELECT * FROM auctions WHERE owner_id = ? ORDER BY id DESC";
 
-$result = mysqli_query($conn, $query);
+$result = runQuery($query, "i", $userId);
 
 ?>
 <html>
@@ -21,11 +21,11 @@ $result = mysqli_query($conn, $query);
         </div>
         <div class="display-auctions">
             <?php
-            if (mysqli_num_rows($result) > 0) {
+            if ($result->num_rows > 0) {
             ?>
                 <div class="auctions-grid">
                     <?php
-                    while ($row = mysqli_fetch_assoc($result)) {
+                    while ($row = $result->fetch_assoc()) {
                         displayAuction($row);
                     }
                 } else {

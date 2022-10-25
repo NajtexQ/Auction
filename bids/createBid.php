@@ -18,8 +18,8 @@ if ($endDate < date("Y-m-d H:i:s")) {
 }
 
 if ($amount >= $currentPrice + $minBidIncrease) {
-    $query = "INSERT INTO bids (user_id, auction_id, amount) VALUES ('$userId', '$auctionId', '$amount')";
-    $result = mysqli_query($conn, $query);
+    $query = "INSERT INTO bids (user_id, auction_id, amount) VALUES (?, ?, ?)";
+    $result = runQuery($query, "iii", $userId, $auctionId, $amount);
 }
 
 if (isset($_SERVER['HTTP_REFERER'])) {

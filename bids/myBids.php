@@ -3,17 +3,16 @@
 include_once "../init.php";
 include_once "../loginProtect.php";
 
-$query = "SELECT auctions.id, auctions.title, auctions.short_desc, auctions.category, auctions.owner_id, auctions.start_price, auctions.min_bid_increase, auctions.end_date, auctions.image, MAX(bids.amount) AS amount FROM auctions INNER JOIN bids ON auctions.id = bids.auction_id WHERE bids.user_id = $USER[id] GROUP BY auctions.id";
-$result = mysqli_query($conn, $query);
-$result2 = mysqli_query($conn, $query);
+$query = "SELECT auctions.id, auctions.title, auctions.short_desc, auctions.category, auctions.owner_id, auctions.start_price, auctions.min_bid_increase, auctions.end_date, auctions.image, MAX(bids.amount) AS amount FROM auctions INNER JOIN bids ON auctions.id = bids.auction_id WHERE bids.user_id = ? GROUP BY auctions.id";
+$result = runQuery($query, "i", $USER["id"]);
 
 $wonAuctions = [];
 
-if (mysqli_num_rows($result2) > 0) {
+if ($result->num_rows > 0) {
 
     $now = time();
 
-    while ($row = mysqli_fetch_assoc($result2)) {
+    while ($row = $result->fetch_assoc()) {
 
         $endDate = strtotime($row["end_date"]);
         $highestBid = getHighestBid($row["id"]);
@@ -37,14 +36,14 @@ if (mysqli_num_rows($result2) > 0) {
     <div class="content-container">
         <h1 class="page-title">My bids</h1>
         <div class="active-bids">
-            <?php if (mysqli_num_rows($result) > 0) : ?>
+            <?php if (count($wonAuctions) > 0) : ?>
                 <div class="display-auctions">
                     <div class="auctions-grid">
                         <?php
 
                         $now = time();
 
-                        while ($row = mysqli_fetch_assoc($result)) {
+                        while ($row = $result->fetch_assoc()) {
 
                             $endDate = strtotime($row["end_date"]);
 

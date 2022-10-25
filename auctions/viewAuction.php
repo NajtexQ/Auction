@@ -5,11 +5,9 @@ include_once "../loginProtect.php";
 
 $auctionId = $_GET["id"];
 
-$query = "SELECT * FROM auctions WHERE id = '$auctionId'";
+$query = "SELECT * FROM auctions WHERE id = ?";
 
-$result = mysqli_query($conn, $query);
-
-$auction = mysqli_fetch_assoc($result);
+$auction = runQuery($query, "i", $auctionId);
 
 ?>
 
@@ -21,7 +19,9 @@ $auction = mysqli_fetch_assoc($result);
     <div class="content-container">
         <?php
 
-        if (mysqli_num_rows($result) > 0) {
+        if ($auction->num_rows > 0) {
+
+            $currentPrice = getCurrentPrice($auctionId);
 
             echo "<h1 class='page-title'>$auction[title]</h1>";
             echo "<p class='page-subtitle'>$auction[short_desc]</p>";
@@ -35,11 +35,11 @@ $auction = mysqli_fetch_assoc($result);
             echo "</tr>";
             echo "<tr>";
             echo "<td>Starting Price:</td>";
-            echo "<td>$auction[start_price]€</td>";
+            echo "<td>$auction[start_price] €</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>Current Price:</td>";
-            echo "<td>$auction[start_price]€</td>";
+            echo "<td>$currentPrice €</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>Category:</td>";

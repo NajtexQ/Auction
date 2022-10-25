@@ -4,9 +4,9 @@ include_once "../init.php";
 
 $auctionId = $_GET["id"];
 
-$query = "DELETE FROM auctions WHERE (id = '$auctionId') and (owner_id = '$USER[id]')";
+$query = "DELETE FROM auctions WHERE (id = ?) and (owner_id = ?)";
 
-$result = mysqli_query($conn, $query);
+$result = runQuery($query, "ii", $auctionId, $USER["id"]);
 
 if ($result) {
     if (isset($_SERVER['HTTP_REFERER'])) {

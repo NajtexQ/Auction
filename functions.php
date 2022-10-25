@@ -5,7 +5,7 @@ function displayAuction($props)
     global $USER;
 
     $currentBid = getHighestBid($props["id"]);
-    $currentPrice = $currentBid["amount"] ?? $props["start_price"] - $props["min_bid_increase"];
+    $currentPrice = getCurrentPrice($props["id"]);
     $currentBidderId = $currentBid["user_id"] ?? null;
 
     $category = getCategoryLabel($props["category"]);
@@ -51,19 +51,17 @@ function displayAuction($props)
 
 function getAuction($id)
 {
-    global $conn;
-    $query = "SELECT * FROM auctions WHERE id = '$id'";
-    $result = mysqli_query($conn, $query);
-    $auction = mysqli_fetch_assoc($result);
-    return $auction;
+    $query = "SELECT * FROM auctions WHERE id = ?";
+    $result = runQuery($query, "i", $id);
+    return $result;
 }
 
 function getCurrentPrice($auctionId)
 {
     global $conn;
-    $query = "SELECT * FROM bids WHERE auction_id = '$auctionId' ORDER BY amount DESC LIMIT 1";
-    $result = mysqli_query($conn, $query);
-    $bid = mysqli_fetch_assoc($result);
+    $query = "SELECT * FROM bids WHERE auction_id = ? ORDER BY amount DESC LIMIT 1";
+    $bid = runQuery($query, "i", $auctionId);
+
     if ($bid) {
         return $bid["amount"];
     } else {
@@ -74,18 +72,19 @@ function getCurrentPrice($auctionId)
 function getHighestBid($auctionId)
 {
     global $conn;
-    $query = "SELECT b.*, u.username as bidder FROM bids b INNER JOIN users u ON b.user_id = u.id WHERE auction_id = '$auctionId' ORDER BY amount DESC LIMIT 1";
-    $result = mysqli_query($conn, $query);
-    $bid = mysqli_fetch_assoc($result);
+    $query = "SELECT b.*, u.username as bidder FROM bids b INNER JOIN users u ON b.user_id = u.id WHERE auction_id = ? ORDER BY amount DESC LIMIT 1";
+
+    $bid = runQuery($query, "i", $auctionId);
     return $bid;
 }
 
 function getCategoryLabel($category)
 {
     global $conn;
-    $query = "SELECT * FROM auction_categories WHERE name = '$category'";
-    $result = mysqli_query($conn, $query);
-    $category = mysqli_fetch_assoc($result);
+    $query = "SELECT * FROM auction_categories WHERE name = ?";
+
+    $category = runQuery($query, "s", $category);
+
     return $category["label"];
 }
 
@@ -94,7 +93,7 @@ function displayError($msg)
     echo "<div class='error-container'>$msg</div>";
 }
 
-function runQuery($query, $types, ...$values)
+function runQuery($query, $types = null, ...$values)
 {
     global $conn;
     $stmt = $conn->prepare($query);

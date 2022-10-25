@@ -27,8 +27,8 @@ if (isset($_POST["submit"])) {
     } else if ($endDate < date("Y-m-d")) {
         displayError("End date must be in the future");
     } else {
-        $query = "INSERT INTO auctions (title, short_desc, long_desc, category, owner_id, start_price, min_bid, min_bid_increase, end_date, image) VALUES ('$title', '$short_desc', '$long_desc', '$category', '$owner_id', '$startPrice', '$minPrice' ,'$minBidIncrease', '$endDate', '$image')";
-        $result = mysqli_query($conn, $query);
+        $query = "INSERT INTO auctions (title, short_desc, long_desc, category, owner_id, start_price, min_bid, min_bid_increase, end_date, image) VALUES (?, ? ,? ,? ,? ,? ,? ,? ,? ,?)";
+        $result = runQuery($query, "sssssisiss", $title, $short_desc, $long_desc, $category, $owner_id, $startPrice, $minPrice, $minBidIncrease, $endDate, $image);
 
         if ($result) {
             header("Location: ../index.php");
@@ -40,11 +40,8 @@ if (isset($_POST["submit"])) {
 
 function getCategories()
 {
-    global $conn;
     $query = "SELECT * FROM auction_categories";
-    $result = mysqli_query($conn, $query);
-    $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    return $categories;
+    return runQuery($query);
 }
 
 ?>

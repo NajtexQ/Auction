@@ -3,13 +3,12 @@ include_once "init.php";
 
 if (isset($_POST["submit"])) {
 
-    $login_query = "SELECT * FROM users WHERE username = '$_POST[username]'";
-    $login_result = mysqli_query($conn, $login_query);
+    $login_query = "SELECT * FROM users WHERE username = ?";
+    $user = runQuery($login_query, "s", $_POST["username"]);
 
     $passwordVerified = false;
 
-    if (mysqli_num_rows($login_result) > 0) {
-        $user = mysqli_fetch_assoc($login_result);
+    if ($user->num_rows > 0) {
         $passwordVerified = password_verify($_POST["password"], $user["password"]);
     }
     if ($passwordVerified) {
