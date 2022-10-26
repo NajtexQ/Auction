@@ -14,16 +14,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-        $register_query = "INSERT INTO users (firstName, lastName, email, username, password) VALUES (?, ?, ?, ?, ?)";
-        $register_result = runQuery($register_query, "sssss", $_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["username"], $password);
-
-        if ($register_result) {
-            $last_id = $conn->insert_id;
-            $_SESSION["user_id"] = $last_id;
-
-            header("Location: " . rootUrl("/index.php"));
+        if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+            displayError("Invalid email");
         } else {
-            echo "Error: " . $register_query . "<br>" . mysqli_error($conn);
+
+            $register_query = "INSERT INTO users (firstName, lastName, email, username, password) VALUES (?, ?, ?, ?, ?)";
+            $register_result = runQuery($register_query, "sssss", $_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["username"], $password);
+
+            if ($register_result) {
+                $last_id = $conn->insert_id;
+                $_SESSION["user_id"] = $last_id;
+
+                header("Location: " . rootUrl("/index.php"));
+            } else {
+                echo "Error: " . $register_query . "<br>" . mysqli_error($conn);
+            }
         }
     }
 }
