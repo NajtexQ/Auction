@@ -104,3 +104,17 @@ function runQuery($query, $types = null, ...$values)
     $stmt->execute();
     return $stmt->get_result();
 }
+
+function userExists($username)
+{
+    $query = "SELECT * FROM users WHERE username = ?";
+    $result = runQuery($query, "s", $username);
+    return $result->num_rows > 0;
+}
+
+function emailExists($email)
+{
+    $query = "SELECT * FROM users WHERE email = ?";
+    $result = runQuery($query, "s", $email);
+    return $result->num_rows > 0;
+}

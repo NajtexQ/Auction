@@ -1,5 +1,7 @@
 <?php
 
+include_once "init.php";
+
 //You can customize your captcha settings here
 
 $captcha_code = '';
