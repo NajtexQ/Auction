@@ -29,8 +29,9 @@ if (isset($_POST["submit"])) {
     } else {
         $query = "INSERT INTO auctions (title, short_desc, long_desc, category, owner_id, start_price, min_bid, min_bid_increase, end_date, image) VALUES (?, ? ,? ,? ,? ,? ,? ,? ,? ,?)";
         $result = runQuery($query, "sssssisiss", $title, $short_desc, $long_desc, $category, $owner_id, $startPrice, $minPrice, $minBidIncrease, $endDate, $image);
+        $auction = $result->fetch_assoc();
 
-        if ($result) {
+        if ($auction) {
             header("Location: ../index.php");
         } else {
             echo "Error: " . mysqli_error($conn);
@@ -41,7 +42,8 @@ if (isset($_POST["submit"])) {
 function getCategories()
 {
     $query = "SELECT * FROM auction_categories";
-    return runQuery($query);
+    $result = runQuery($query);
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 ?>

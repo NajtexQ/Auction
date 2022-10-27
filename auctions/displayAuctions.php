@@ -5,14 +5,16 @@ $auctionsPerPage = 6;
 
 $countQuery = "SELECT COUNT(*) as auction_count FROM auctions WHERE end_date > NOW()";
 $countResult = runQuery($countQuery);
+$count = $countResult->fetch_assoc();
 
-$numOfPages = ceil($countResult["auction_count"] / $auctionsPerPage);
+$numOfPages = ceil($count["auction_count"] / $auctionsPerPage);
 
 $offset = ($currentPage - 1) * $auctionsPerPage;
 
 $query = "SELECT * FROM auctions WHERE end_date > NOW() LIMIT ? OFFSET ?";
 
 $result = runQuery($query, "ii", $auctionsPerPage, $offset);
+
 ?>
 
 <div class="auctions-page">

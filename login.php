@@ -4,11 +4,12 @@ include_once "init.php";
 if (isset($_POST["submit"])) {
 
     $login_query = "SELECT * FROM users WHERE username = ?";
-    $user = runQuery($login_query, "s", $_POST["username"]);
+    $result = runQuery($login_query, "s", $_POST["username"]);
 
     $passwordVerified = false;
 
-    if ($user->num_rows > 0) {
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
         $passwordVerified = password_verify($_POST["password"], $user["password"]);
     }
     if ($passwordVerified) {

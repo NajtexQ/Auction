@@ -5,7 +5,7 @@ $CONFIG = [
         "host" => "localhost",
         "username" => "root",
         "password" => "",
-        "database" => "auctions"
+        "database" => "auction"
     ],
     "paths" => [
         "root" => __DIR__,

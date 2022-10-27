@@ -53,14 +53,14 @@ function getAuction($id)
 {
     $query = "SELECT * FROM auctions WHERE id = ?";
     $result = runQuery($query, "i", $id);
-    return $result;
+    return $result->fetch_assoc();
 }
 
 function getCurrentPrice($auctionId)
 {
-    global $conn;
     $query = "SELECT * FROM bids WHERE auction_id = ? ORDER BY amount DESC LIMIT 1";
-    $bid = runQuery($query, "i", $auctionId);
+    $result = runQuery($query, "i", $auctionId);
+    $bid = $result->fetch_assoc();
 
     if ($bid) {
         return $bid["amount"];
@@ -71,19 +71,20 @@ function getCurrentPrice($auctionId)
 
 function getHighestBid($auctionId)
 {
-    global $conn;
     $query = "SELECT b.*, u.username as bidder FROM bids b INNER JOIN users u ON b.user_id = u.id WHERE auction_id = ? ORDER BY amount DESC LIMIT 1";
 
-    $bid = runQuery($query, "i", $auctionId);
+    $result = runQuery($query, "i", $auctionId);
+    $bid = $result->fetch_assoc();
+
     return $bid;
 }
 
 function getCategoryLabel($category)
 {
-    global $conn;
     $query = "SELECT * FROM auction_categories WHERE name = ?";
 
-    $category = runQuery($query, "s", $category);
+    $result = runQuery($query, "s", $category);
+    $category = $result->fetch_assoc();
 
     return $category["label"];
 }
@@ -97,7 +98,9 @@ function runQuery($query, $types = null, ...$values)
 {
     global $conn;
     $stmt = $conn->prepare($query);
-    $stmt->bind_param($types, ...$values);
+    if ($types) {
+        $stmt->bind_param($types, ...$values);
+    }
     $stmt->execute();
     return $stmt->get_result();
 }

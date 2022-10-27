@@ -7,7 +7,7 @@ $auctionId = $_GET["id"];
 
 $query = "SELECT * FROM auctions WHERE id = ?";
 
-$auction = runQuery($query, "i", $auctionId);
+$result = runQuery($query, "i", $auctionId);
 
 ?>
 
@@ -19,7 +19,9 @@ $auction = runQuery($query, "i", $auctionId);
     <div class="content-container">
         <?php
 
-        if ($auction->num_rows > 0) {
+        if ($result->num_rows > 0) {
+
+            $auction = $result->fetch_assoc();
 
             $currentPrice = getCurrentPrice($auctionId);
 

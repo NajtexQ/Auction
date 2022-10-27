@@ -7,8 +7,9 @@ $auctionId = $_GET["id"];
 $query = "DELETE FROM auctions WHERE (id = ?) and (owner_id = ?)";
 
 $result = runQuery($query, "ii", $auctionId, $USER["id"]);
+$auction = $result->fetch_assoc();
 
-if ($result) {
+if ($auction) {
     if (isset($_SERVER['HTTP_REFERER'])) {
         $previous = $_SERVER['HTTP_REFERER'];
         header("Location: $previous");
