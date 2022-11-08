@@ -25,10 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
 
             $register_query = "INSERT INTO users (firstName, lastName, email, username, password) VALUES (?, ?, ?, ?, ?)";
-            $result = runQuery($register_query, "sssss", $_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["username"], $password);
-            $register_result = $result->fetch_assoc();
+            $result = runInsertQuery($register_query, "sssss", $_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["username"], $password);
+            $success = $result > 0;
 
-            if ($register_result) {
+            if ($success) {
                 $last_id = $conn->insert_id;
                 $_SESSION["user_id"] = $last_id;
 

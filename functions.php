@@ -105,6 +105,17 @@ function runQuery($query, $types = null, ...$values)
     return $stmt->get_result();
 }
 
+function runInsertQuery($query, $types = null, ...$values)
+{
+    global $conn;
+    $stmt = $conn->prepare($query);
+    if ($types) {
+        $stmt->bind_param($types, ...$values);
+    }
+    $stmt->execute();
+    return $stmt->affected_rows;
+}
+
 function userExists($username)
 {
     $query = "SELECT * FROM users WHERE username = ?";
