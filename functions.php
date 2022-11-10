@@ -25,13 +25,13 @@ function displayAuction($props)
     echo "<img src='" . rootUrl("/uploads/") . $props["image"] . "' alt='auction image' class='auction-image'>";
     echo "</div>";
     echo "<div class='auction-info'>";
-    echo "<h3 class='auction-title'>{$props["title"]}</h3>";
-    echo "<div class='auction-description'>{$props["short_desc"]}</div>";
+    echo "<h3 class='auction-title'>" . sanitizeUserInput($props["title"]) . "</h3>";
+    echo "<div class='auction-description'>" . sanitizeUserInput($props["short_desc"]) . "</div>";
     echo "</div>";
     echo "</div>";
     if (!$isExpired) {
         if ($currentBid["amount"]) {
-            echo "<div class='auction-expired'>Sold for: " . $currentPrice . '€' . "</div>";
+            echo "<div class='auction-expired'>Sold for: " . sanitizeUserInput($currentPrice) . '€' . "</div>";
         } else {
             echo "<div class='auction-expired'>Expired</div>";
         }
@@ -128,4 +128,9 @@ function emailExists($email)
     $query = "SELECT * FROM users WHERE email = ?";
     $result = runQuery($query, "s", $email);
     return $result->num_rows > 0;
+}
+
+function sanitizeUserInput($input)
+{
+    return htmlspecialchars(stripslashes(trim($input)));
 }
