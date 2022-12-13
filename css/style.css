@@ -298,4 +298,8 @@
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 40px;
   }
+
+  .auction-create-container .auction-create-form {
+    width: 100%;
+  }
 }
